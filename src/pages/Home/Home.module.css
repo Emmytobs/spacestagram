@@ -1,0 +1,14 @@
+.main {
+    padding: 80px 150px;
+}
+
+@media screen and (max-width: 1064px) {
+    .main {
+        padding: 80px 30px;
+    }
+}
+@media screen and (max-width: 570px) {
+    .main {
+        padding: 80px 50px;
+    }
+}

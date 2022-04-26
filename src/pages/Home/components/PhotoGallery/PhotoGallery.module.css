@@ -1,0 +1,22 @@
+.componentContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1560px;
+    margin: 0 auto;
+    grid-gap: 70px 35px;
+}
+
+@media screen and (max-width: 1064px) {
+    .componentContainer {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 55px 35px;
+    }
+}
+@media screen and (max-width: 570px) {
+    .componentContainer {
+        display: block;
+    }
+    .componentContainer > div {
+        margin-bottom: 55px;
+    }
+}
