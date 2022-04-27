@@ -5,6 +5,11 @@
     margin: 0 auto;
     grid-gap: 70px 35px;
 }
+.loaderContainer > * {
+    width: fit-content;
+    margin: 0 auto;
+    display: block;
+}
 
 @media screen and (max-width: 1064px) {
     .componentContainer {

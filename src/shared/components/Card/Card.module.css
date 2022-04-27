@@ -8,6 +8,12 @@
     border-radius: 3px;
     border: 2px solid #eee;
     box-shadow: 4px 4px 0px 0px var(--shadow-color);
+    transition: all .2s ease-in;
+}
+.componentContainer:hover {
+    position: relative;
+    bottom: 2px;
+    box-shadow: 10px 10px 0px 0px var(--shadow-color);
 }
 
 .cardHeader {
@@ -35,4 +41,15 @@
 }
 .cardContent {
     border-bottom: 1px solid var(--shadow-color);
+}
+
+.cardFooter > div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.cardFooter > div > span {
+    display: block;
+    margin-left: 10px;
 }

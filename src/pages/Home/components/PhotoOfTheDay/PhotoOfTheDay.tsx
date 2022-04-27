@@ -20,13 +20,13 @@ function PhotoOfTheDay() {
     <div className={styles.componentContainer}>
       <div className={styles.photoDetailsContainer}>
         <div>
-          <h3 className={styles.title}>Astronomy Photo Of The Day</h3>
-          <img src={photo_of_the_day} alt="" />
+          <h3 className={astronomyPhoto.title}>Astronomy Photo Of The Day</h3>
+          <img src={astronomyPhoto.imageUrl} alt="" />
         </div>
       </div>  
 
       <div className={styles.backgroundEffect}>
-          <img src={photo_of_the_day} alt="Astronomy pic of the day" />
+          <img src={astronomyPhoto.imageUrl} alt="Astronomy pic of the day" />
       </div>
     </div>
   )

@@ -18,6 +18,11 @@
     color: #fff;
 }
 
+.photoDetailsContainer > div {
+    background: var(--background);
+    padding: 10px 25px;
+}
+
 .photoDetailsContainer img {
     display: block;
     width: 400px;

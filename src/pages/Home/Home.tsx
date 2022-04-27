@@ -1,9 +1,11 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 // Components
 import Header from '../../shared/components/Header/Header'
 import PhotoGallery from './components/PhotoGallery/PhotoGallery'
 import PhotoOfTheDay from './components/PhotoOfTheDay/PhotoOfTheDay'
 import { Context, RoverPhotos } from '../../shared/context/Context'
+// Depdendencies
+import dayjs from 'dayjs'
 // Styles
 import styles from './Home.module.css'
 // Hooks
@@ -13,8 +15,8 @@ function Home() {
     const http = httpModule()
 
     const { astronomyPhoto, roverPhotos, setAstronomyPhoto, setRoverPhotos } = useContext(Context)
-
     const { isLoading, callGet } = http.useGet()
+    const [pageNumber, setPageNumber] = useState(0);
 
     const getAstronomyPhotoOfTheDay = async () => {
         const astronomyPhotoDetails = await callGet({ 
@@ -30,29 +32,44 @@ function Home() {
         }
     }
     
-    const getRoverPhotos = async () => {
-        const roverPhotos = await callGet({
-            url: `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${'2022-01-01'}&page=1&api_key=${process.env.REACT_APP_API_KEY}`
-        });
-        if (roverPhotos) {
-            const formattedRoverPhotos: RoverPhotos = roverPhotos.photos.map((photo: any) => ({
-                id: photo.id,
-                cameraName: photo.camera.name,
-                imageUrl: photo.img_src,
-                launchDate: photo.rover.launch_date,
-                landingDate: photo.rover.landing_date,
-                earthDate: photo.earth_date,
-                isLiked: false
-            }))
-            setRoverPhotos(formattedRoverPhotos)
+    const getRoverPhotos = async (pageNumber: number) => {
+        try {
+            const roverPhotosFromApi = await callGet({
+                url: `
+                    https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${'2022-01-01'}&page=${pageNumber}&api_key=${process.env.REACT_APP_API_KEY}
+                `
+            });
+            if (roverPhotosFromApi) {
+                const formattedRoverPhotos: RoverPhotos = roverPhotosFromApi.photos.map((photo: any) => ({
+                    id: photo.id,
+                    cameraName: photo.camera.name,
+                    imageUrl: photo.img_src,
+                    launchDate: dayjs(photo.rover.launch_date).format('MMM D, YYYY'),
+                    landingDate: dayjs(photo.rover.landing_date).format('MMM D, YYYY'),
+                    earthDate: dayjs(photo.earth_date).format('MMM D, YYYY'),
+                    isLiked: false
+                }))
+                setRoverPhotos([
+                    ...roverPhotos,
+                    ...formattedRoverPhotos
+                ])
+            }
+        } catch (error) {
         }
+    }
+
+    const fetchMoreDataHandler = () => {
+        // console.log('from fetchMoreDataHandler')
+        const nextPageNumber = pageNumber + 1
+        setPageNumber(nextPageNumber)
+        getRoverPhotos(nextPageNumber)
     }
 
     useEffect(() => {
         getAstronomyPhotoOfTheDay()
     }, []);
     useEffect(() => {
-        getRoverPhotos()
+        // getRoverPhotos(pageNumber)
     }, []);
 
     return (
@@ -61,9 +78,7 @@ function Home() {
         <PhotoOfTheDay />
         <main className={styles.main}>
             {
-                isLoading ? 
-                <h1>Loading...</h1> :
-                <PhotoGallery />
+                <PhotoGallery fetchMoreDataHandler={fetchMoreDataHandler} />
             }
         </main>
         </>

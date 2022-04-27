@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
+import { Context, RoverPhoto } from '../../../shared/context/Context'
+import Button from '../Buttons/Buttons';
 // Stylesheet
 import styles from './Card.module.css'
 // Images
-import { Context, RoverPhoto } from '../../../shared/context/Context'
-import { LikeButton, UnlikeButton } from '../Buttons/Buttons';
-
+import landedIcon from '../../../shared/icons/landed.png';
+import launchedIcon from '../../../shared/icons/launched.png';
+import cameraIcon from '../../../shared/icons/camera.png';
 interface ICardProps extends RoverPhoto {
 }
 
@@ -23,9 +25,9 @@ export default function Card(props: ICardProps) {
         <div className={styles.likeButtonContainer}>
           {
             props.isLiked ? 
-            <LikeButton onClick={() => toggleRoverPhotoLiked(props.id)}/> 
+            <Button type="LIKE" onClick={() => toggleRoverPhotoLiked(props.id)}/>  
             :
-            <UnlikeButton onClick={() => toggleRoverPhotoLiked(props.id)}/>
+            <Button type="UNLIKE" onClick={() => toggleRoverPhotoLiked(props.id)}/>
           }
         </div>
       </div>
@@ -35,8 +37,18 @@ export default function Card(props: ICardProps) {
         </div>
       </div>
       <div className={styles.cardFooter}>
-            <span>Launched on: {props.launchDate}</span>
-            <span>Landed on: {props.landingDate}</span>
+        <div>
+          <img src={cameraIcon} alt="Date of capture" width="16px" height="16px" />
+          <span>Captured on: {props.earthDate}</span>
+        </div>
+        <div>
+          <img src={launchedIcon} alt="Date of launch" width="16px" height="16px" />
+          <span>Launched on: {props.launchDate}</span>
+        </div>
+        <div>
+          <img src={landedIcon} alt="Date of landing" width="16px" height="16px" />
+          <span>Landed on: {props.landingDate}</span>
+        </div>
       </div>
     </div>
   )
