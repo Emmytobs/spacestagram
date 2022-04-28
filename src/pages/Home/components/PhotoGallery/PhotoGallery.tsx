@@ -27,10 +27,10 @@ function PhotoGallery(props: IPhotoGallery) {
       <div className={styles.componentContainer}>
         {
           roverPhotos
-            .map(photo => 
+            .map((photo, index) => 
               <Card
-                key={photo.id}
-                id={photo.id}
+                key={index}
+                id={index}
                 cameraName={photo.cameraName}
                 imageUrl={photo.imageUrl}
                 earthDate={photo.earthDate}

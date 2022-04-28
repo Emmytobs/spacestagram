@@ -5,8 +5,8 @@ function Header() {
   return (
     <header className={styles.header}>
         <div>
-            <p>Shopify Frontend Internship Project</p>
-            <p>Built by <a href="https://github.com/emmytobs">emmytobs</a></p>
+            <p>Spacestagram</p>
+            <p>Built by <a target="_blank" rel="noreferrer" href="https://github.com/emmytobs">emmytobs</a></p>
         </div>
     </header>
   )

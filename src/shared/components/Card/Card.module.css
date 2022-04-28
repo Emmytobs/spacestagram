@@ -5,19 +5,13 @@
     padding: 0;
     margin: 0;
     background: #fff;
-    /* border-radius: 3px; */
-    /* border: 2px solid #eee;
-    box-shadow: 4px 4px 0px 0px var(--shadow-color); */
-    transition: all .2s ease-in;
-}
-.componentContainer:hover {
-    position: relative;
-    bottom: 5px;
-    box-shadow: 10px 10px 0px 0px var(--shadow-color);
 }
 
 .cardHeader {
     position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 350px;
 }
 
 .cardHeader > img {
@@ -26,7 +20,11 @@
     display: block;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    transition: all 0.3s ease-in;
+}
+
+.cardHeader > img:hover {
+    transform: scale(1.1);
 }
 
 .likeButtonContainer {

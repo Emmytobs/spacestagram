@@ -1,10 +1,7 @@
 import React, { useContext } from 'react'
+import { AstronomyPhoto, Context } from '../../../../shared/context/Context'
 // Stylesheets
 import styles from './PhotoOfTheDay.module.css'
-// Images
-import photo_of_the_day from '../../../../shared/icons/PhotoOfTheDay.jpg'
-// Abstractions (interfaces)
-import { AstronomyPhoto, Context } from '../../../../shared/context/Context'
 
 /**
  * @description Displays the Astronomy Picture of the Day

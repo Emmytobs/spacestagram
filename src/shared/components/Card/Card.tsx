@@ -1,21 +1,28 @@
 import React, { useContext } from 'react'
-import { Context, RoverPhoto } from '../../../shared/context/Context'
+import { Context, RoverPhoto, RoverPhotos } from '../../../shared/context/Context'
 import Button from '../Buttons/Buttons';
 // Stylesheet
 import styles from './Card.module.css'
 // Images
 import landedIcon from '../../../shared/icons/landed.png';
 import launchedIcon from '../../../shared/icons/launched.png';
-import cameraIcon from '../../../shared/icons/camera.png';
-interface ICardProps extends RoverPhoto {
-}
+
+interface ICardProps extends RoverPhoto {}
 
 export default function Card(props: ICardProps) {
   const { roverPhotos, setRoverPhotos } = useContext(Context);
+  const _roverPhotos = [...roverPhotos]
+  
   const toggleRoverPhotoLiked = (photoId: number) => {
-    const roverPhoto = roverPhotos.find(photo => photo.id === photoId) as RoverPhoto
+    const roverPhoto = _roverPhotos.find((photo, index) => index === photoId) as RoverPhoto
     roverPhoto.isLiked = !roverPhoto.isLiked
-    setRoverPhotos([...roverPhotos, roverPhoto])
+    updateRoverPhotosInStorage(roverPhotos)
+    setRoverPhotos([..._roverPhotos])
+  }
+
+  const updateRoverPhotosInStorage = (roverPhotos: RoverPhotos) => {
+    console.log(roverPhotos.length)
+    localStorage.setItem('roverPhotos', JSON.stringify(roverPhotos))
   }
 
   return (
@@ -47,16 +54,6 @@ export default function Card(props: ICardProps) {
         </div>
         <p className={styles.captureDate}>Captured on {props.earthDate}</p>
       </div>
-      {/* <div className={styles.cardFooter}>
-        <div>
-          <img src={launchedIcon} alt="Date of launch" width="16px" height="16px" />
-          <span>Launched on: {props.launchDate}</span>
-        </div>
-        <div>
-          <img src={landedIcon} alt="Date of landing" width="16px" height="16px" />
-          <span>Landed on: {props.landingDate}</span>
-        </div>
-      </div> */}
     </div>
   )
 }

@@ -19,14 +19,22 @@
 }
 
 .photoDetailsContainer > div {
-    background: var(--background);
-    padding: 10px 25px;
+    background: #fff;
+    border-radius: 7px;
+    padding: 25px;
+}
+
+.photoDetailsContainer h3 {
+    margin-top: 0;
 }
 
 .photoDetailsContainer img {
     display: block;
     width: 400px;
     height: 400px;
+    object-fit: cover;
+    object-position: center;
+    /* aspect-ratio: 4 / 3; */
 }
 
 
@@ -46,22 +54,14 @@
     object-position: top;
     filter: blur(4px);
 }
-
-@media screen and (max-width: 1064px) {
-    .photoDetailsContainer img {
-    }
-}
 @media screen and (max-width: 570px) {
-    .componentContainer {
-        height: 85vh;
-        position: relative;
-    }
     .photoDetailsContainer div {
-        width: 85%;
-        height: 80%;
+        width: 95%;
         margin: 0 auto;
+        padding: 15px 13px;
     }
     .photoDetailsContainer div img {
         width: 100%;
+        height: 100%;
     }
 }
