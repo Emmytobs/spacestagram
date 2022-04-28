@@ -11,13 +11,13 @@
     display: block;
 }
 
-@media screen and (max-width: 1064px) {
+@media screen and (max-width: 1080px) {
     .componentContainer {
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 55px 35px;
     }
 }
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 630px) {
     .componentContainer {
         display: block;
     }

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'FuturaPTDemi';
+    src: url('./shared/fonts/FuturaPTDemi.otf') format('woff');
+}
+@font-face {
+    font-family: 'FuturaPTMedium';
+    src: url('./shared/fonts/FuturaPTMedium.otf') format('woff');
+}

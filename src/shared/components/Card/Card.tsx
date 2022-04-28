@@ -33,14 +33,21 @@ export default function Card(props: ICardProps) {
       </div>
       <div className={styles.cardContent}>
         <div>
-          <h4 className={styles.title}>{props.cameraName}</h4>
+          <p className={styles.title}>{props.cameraName}</p>
+          <div className={styles.launchAndLandDate}>
+            <div>
+              <img src={launchedIcon} alt="Date of launch" width="14px" height="14px" />
+              <span>{props.launchDate}</span>
+            </div>
+            <div>
+              <img src={landedIcon} alt="Date of landing" width="16px" height="16px" />
+              <span>{props.landingDate}</span>
+            </div>
+          </div>
         </div>
+        <p className={styles.captureDate}>Captured on {props.earthDate}</p>
       </div>
-      <div className={styles.cardFooter}>
-        <div>
-          <img src={cameraIcon} alt="Date of capture" width="16px" height="16px" />
-          <span>Captured on: {props.earthDate}</span>
-        </div>
+      {/* <div className={styles.cardFooter}>
         <div>
           <img src={launchedIcon} alt="Date of launch" width="16px" height="16px" />
           <span>Launched on: {props.launchDate}</span>
@@ -49,7 +56,7 @@ export default function Card(props: ICardProps) {
           <img src={landedIcon} alt="Date of landing" width="16px" height="16px" />
           <span>Landed on: {props.landingDate}</span>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

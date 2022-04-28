@@ -69,7 +69,11 @@ function Home() {
         getAstronomyPhotoOfTheDay()
     }, []);
     useEffect(() => {
-        // getRoverPhotos(pageNumber)
+        const photosExistsInLocalStorage = localStorage.getItem('roverPhotos')
+        if (photosExistsInLocalStorage) {
+            const data = JSON.parse(photosExistsInLocalStorage)
+            setRoverPhotos(data)
+        }
     }, []);
 
     return (
