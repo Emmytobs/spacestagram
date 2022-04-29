@@ -63,11 +63,11 @@ export default function Card(props: ICardProps) {
         <div>
           <p className={styles.title}>{props.cameraName}</p>
           <div className={styles.launchAndLandDate}>
-            <div>
+            <div title="Lauch date">
               <img src={launchedIcon} alt="Date of launch" width="14px" height="14px" />
               <span>{props.launchDate}</span>
             </div>
-            <div>
+            <div title="Landing date">
               <img src={landedIcon} alt="Date of landing" width="16px" height="16px" />
               <span>{props.landingDate}</span>
             </div>

@@ -6,7 +6,7 @@ function Header() {
     <header className={styles.header}>
         <div>
             <p>Spacestagram</p>
-            <p>Built by <a target="_blank" rel="noreferrer" href="https://github.com/emmytobs">emmytobs</a></p>
+            <p>Built by <a target="_blank" rel="noreferrer" href="https://github.com/Emmytobs/spacestagram" title="See project link">emmytobs</a></p>
         </div>
     </header>
   )
