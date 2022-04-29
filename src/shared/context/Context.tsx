@@ -4,7 +4,7 @@ export interface AstronomyPhoto {
     title: string
     imageUrl: string
     date: string
-    explanation?: string
+    explanation: string
 }
 export interface RoverPhoto {
     id: number

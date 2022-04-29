@@ -14,23 +14,10 @@ import httpModule from '../../shared/hooks/http'
 function Home() {
     const http = httpModule()
 
-    const { astronomyPhoto, roverPhotos, setAstronomyPhoto, setRoverPhotos } = useContext(Context)
+    const { astronomyPhoto, roverPhotos, setRoverPhotos } = useContext(Context)
     const { isLoading, callGet } = http.useGet()
     const [pageNumber, setPageNumber] = useState(0); // Page will be updated here
 
-    const getAstronomyPhotoOfTheDay = async () => {
-        const astronomyPhotoDetails = await callGet({ 
-            url: `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`
-        });
-        if (astronomyPhotoDetails) {
-            setAstronomyPhoto({
-                title: astronomyPhotoDetails.title,
-                imageUrl: astronomyPhotoDetails.url,
-                date: astronomyPhotoDetails.date,
-                explanation: astronomyPhotoDetails.explanation
-            })
-        }
-    }
     
     const getRoverPhotos = async (pageNumber: number) => {
         try {
@@ -79,9 +66,6 @@ function Home() {
         getRoverPhotos(nextPageNumber) // Fetch the rover photos on the updated page
     }
 
-    useEffect(() => {
-        getAstronomyPhotoOfTheDay()
-    }, []);
     useEffect(() => {
         const savedPhotos = localStorage.getItem('roverPhotos')
         const savedPageNumber = localStorage.getItem('roverPhotosPageNumber');

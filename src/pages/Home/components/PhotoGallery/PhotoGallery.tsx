@@ -14,34 +14,37 @@ function PhotoGallery(props: IPhotoGallery) {
   const { roverPhotos } = useContext(Context)
 
   return (
-    <InfiniteScroll
-        dataLength={roverPhotos.length}
-        next={props.fetchMoreDataHandler}
-        hasMore={true}
-        loader={
-          <div className={styles.loaderContainer}>
-            <ScaleLoader />
-          </div>
-        }
-      >
-      <div className={styles.componentContainer}>
-        {
-          roverPhotos
-            .map((photo, index) => 
-              <Card
-                key={index}
-                id={index}
-                cameraName={photo.cameraName}
-                imageUrl={photo.imageUrl}
-                earthDate={photo.earthDate}
-                landingDate={photo.landingDate}
-                launchDate={photo.launchDate}
-                isLiked={photo.isLiked}
-              />
-            )
-        }
-      </div>
-    </InfiniteScroll>
+    <>
+      <h2 className={styles.componentTitle}>Rover Photos from Jan 1, 2022</h2>
+      <InfiniteScroll
+          dataLength={roverPhotos.length}
+          next={props.fetchMoreDataHandler}
+          hasMore={true}
+          loader={
+            <div className={styles.loaderContainer}>
+              <ScaleLoader />
+            </div>
+          }
+        >
+        <div className={styles.componentContainer}>
+          {
+            roverPhotos
+              .map((photo, index) => 
+                <Card
+                  key={index}
+                  id={index}
+                  cameraName={photo.cameraName}
+                  imageUrl={photo.imageUrl}
+                  earthDate={photo.earthDate}
+                  landingDate={photo.landingDate}
+                  launchDate={photo.launchDate}
+                  isLiked={photo.isLiked}
+                />
+              )
+          }
+        </div>
+      </InfiniteScroll>
+    </>
   )
 }
 

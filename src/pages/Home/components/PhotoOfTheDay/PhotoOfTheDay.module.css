@@ -1,67 +1,81 @@
 .componentContainer {
-    height: 85vh;
-    position: relative;
-}
-
-.photoDetailsContainer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
+    height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.3);
 }
 
-.photoDetailsContainer .title {
-    color: #fff;
+.photoContainer {
+    width: 50%;
 }
 
-.photoDetailsContainer > div {
-    background: #fff;
-    border-radius: 7px;
-    padding: 25px;
-}
-
-.photoDetailsContainer h3 {
-    margin-top: 0;
-}
-
-.photoDetailsContainer img {
+.photoContainer > img {
+    width: 100%;
     display: block;
-    width: 400px;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-    /* aspect-ratio: 4 / 3; */
 }
 
-
-.backgroundEffect {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+.photoDetails {
+    width: 50%;
+    padding: 25px 35px;
 }
 
-.backgroundEffect img {
+.photoDetails .containerTitle {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+.smallScreen {
+    display: none;
+}
+.largeScreen {
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    filter: blur(4px);
 }
-@media screen and (max-width: 570px) {
-    .photoDetailsContainer div {
-        width: 95%;
-        margin: 0 auto;
-        padding: 15px 13px;
-    }
-    .photoDetailsContainer div img {
+.photoDetails .title {
+    font-size: 32px;
+}
+.photoDetails .description {
+    font-size: 20px;
+    width: 100%;
+}
+.photoDetails .title,
+.photoDetails .description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+@media screen and (max-width: 800px) {
+    .componentContainer {
+        height: fit-content;
+        display: block;
         width: 100%;
-        height: 100%;
+        padding: 25px 35px;
     }
+    .photoContainer, .photoDetails {
+        width: 100%;
+    }
+    .photoContainer > img {
+        height: 460px;
+        width: 100%;
+        border-radius: 10px;
+    }
+    .photoDetails {
+        padding: 0;
+    }
+
+    .smallScreen {
+        display: block;
+    }
+    .largeScreen {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .componentContainer {
+        height: fit-content;
+        display: block;
+        width: 100%;
+        padding: 25px 15px;
+    }   
 }
