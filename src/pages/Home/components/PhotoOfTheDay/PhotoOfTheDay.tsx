@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import { AstronomyPhoto, Context } from '../../../../shared/context/Context'
+import { Context } from '../../../../shared/context/Context'
 import httpModule from '../../../../shared/hooks/http'
 
 import Skeleton from 'react-loading-skeleton';
@@ -12,9 +12,6 @@ import styles from './PhotoOfTheDay.module.css'
  * @description Displays the Astronomy Picture of the Day
  * 
  */
-interface IPhotoOfTheDay {
-  photo: AstronomyPhoto
-}
 function PhotoOfTheDay() {
   const { astronomyPhoto, setAstronomyPhoto } = useContext(Context)
 
@@ -37,7 +34,7 @@ function PhotoOfTheDay() {
 
   useEffect(() => {
     getAstronomyPhotoOfTheDay()
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <div className={styles.componentContainer}>

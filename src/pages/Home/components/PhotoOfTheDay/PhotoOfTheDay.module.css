@@ -1,6 +1,8 @@
 .componentContainer {
     height: 100vh;
     display: flex;
+    background: rgb(131, 130, 130);
+    color: #fff;
 }
 
 .photoContainer {
@@ -41,7 +43,6 @@
 .photoDetails .description {
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
-    font-style: italic;
 }
 
 @media screen and (max-width: 800px) {

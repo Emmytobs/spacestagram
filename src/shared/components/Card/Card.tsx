@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Context, RoverPhoto, RoverPhotos } from '../../../shared/context/Context'
+import { Context, RoverPhoto } from '../../../shared/context/Context'
 import Button from '../Buttons/Buttons';
 // Stylesheet
 import styles from './Card.module.css'
@@ -14,15 +14,36 @@ export default function Card(props: ICardProps) {
   const _roverPhotos = [...roverPhotos]
   
   const toggleRoverPhotoLiked = (photoId: number) => {
-    const roverPhoto = _roverPhotos.find((photo, index) => index === photoId) as RoverPhoto
+    const roverPhoto = _roverPhotos.find((_, index) => index === photoId) as RoverPhoto
     roverPhoto.isLiked = !roverPhoto.isLiked
-    updateRoverPhotosInStorage(roverPhotos)
+
+    updatePhotoIDsInStorage(roverPhoto)
     setRoverPhotos([..._roverPhotos])
   }
 
-  const updateRoverPhotosInStorage = (roverPhotos: RoverPhotos) => {
-    console.log(roverPhotos.length)
-    localStorage.setItem('roverPhotos', JSON.stringify(roverPhotos))
+  const updatePhotoIDsInStorage = (roverPhoto: RoverPhoto) => {
+    let likedPhotoIDs: string[] = JSON.parse(localStorage.getItem('likedPhotoIDs') as string);
+    const photoIsLiked = roverPhoto.isLiked === true;
+
+    /* 
+      LikedPhotoIDs may not exist, in which case an entry will be created in local storage.
+      This is done only when the use attempts to like an image
+    */
+    if (!likedPhotoIDs) {
+      localStorage.setItem('likedPhotoIDs', '');
+      likedPhotoIDs = []
+    }
+
+    if (photoIsLiked) {
+      // add photo id to local storage
+      likedPhotoIDs.push(roverPhoto.id.toString());
+    } else {
+      // remove photo id from local storage
+      const updatedPhotoIDs = likedPhotoIDs.filter(photoId => Number(photoId) !== roverPhoto.id)
+      likedPhotoIDs = [...updatedPhotoIDs]
+    }
+
+    localStorage.setItem('likedPhotoIDs', JSON.stringify(likedPhotoIDs))
   }
 
   return (

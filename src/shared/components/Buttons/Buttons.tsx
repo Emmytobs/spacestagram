@@ -12,10 +12,17 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps) {
+
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      props.onClick(e)
+    }
+  }
+
   return (
-    <div 
+    <button 
       className={styles.button} 
-      onKeyDown={(e) => e.key === 'Enter' ? props.onClick(e) : null}
+      onKeyDown={(e) => handleKeyDown(e)}
       onClick={(e: React.BaseSyntheticEvent) => props.onClick(e)}
       tabIndex={0}>
       <img 
@@ -24,7 +31,7 @@ function Button(props: ButtonProps) {
         width="23px" 
         height="23px" 
       />
-    </div>
+    </button>
   )
 }
 

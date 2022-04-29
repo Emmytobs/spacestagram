@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Card from '../../../../shared/components/Card/Card'
-import { Context, RoverPhotos } from '../../../../shared/context/Context'
+import { Context } from '../../../../shared/context/Context'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ScaleLoader from "react-spinners/ScaleLoader"
 // Stylesheet

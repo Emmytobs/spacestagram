@@ -35,12 +35,6 @@ function Provider(props: any) {
         explanation: ''
     })
     const [roverPhotos, setRoverPhotos] = useState<RoverPhotos>([])
-    const [likedRoverPhotos, setLikedRoverPhotos] = useState<RoverPhotos>([])
-
-    // useEffect(() => {
-    //     const stringifiedRoverPhotos = JSON.stringify(roverPhotos);
-    //     localStorage.setItem('roverPhotos', stringifiedRoverPhotos);
-    // }, [roverPhotos])
 
     return (
         <Context.Provider value={{
